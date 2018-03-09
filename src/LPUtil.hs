@@ -45,3 +45,9 @@ exchange x y (e:es)
     | e == y = x:(exchange x y es)
     | otherwise = e:(exchange x y es)
 exchange _ _ [] = []
+
+
+
+
+removeAtIndex:: (Eq a)=>Int->[a]->[a]
+removeAtIndex n l = let (xs,y:ys) = splitAt n l in xs++ys 

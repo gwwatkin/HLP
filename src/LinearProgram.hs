@@ -14,3 +14,9 @@ class LinearProgram t where
 
 -- This is wrapper that describes the current state of a Linear LinearProgram
 data LP a = FBS a | IBS a | OBS a | ULP a | ILP a
+
+fromLp (FBS a) = a
+fromLp (IBS a) = a
+fromLp (OBS a) = a
+fromLp (ULP a) = a
+fromLp (ILP a) = a
