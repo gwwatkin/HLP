@@ -26,13 +26,13 @@ catchIO :: IO a -> (Exception.IOException -> IO a) -> IO a
 catchIO = Exception.catch
 
 version :: Version
-version = Version [0,0,1,0] []
+version = Version [0,0,1,1] []
 bindir, libdir, dynlibdir, datadir, libexecdir, sysconfdir :: FilePath
 
 bindir     = "/home/george/.cabal/bin"
-libdir     = "/home/george/.cabal/lib/x86_64-linux-ghc-8.0.2/LinearProgramming-0.0.1.0-1SuvrWEkTWY280Zv7MhixQ"
+libdir     = "/home/george/.cabal/lib/x86_64-linux-ghc-8.0.2/LinearProgramming-0.0.1.1-EzYmlxZk2yHBfI2hToMMnE"
 dynlibdir  = "/home/george/.cabal/lib/x86_64-linux-ghc-8.0.2"
-datadir    = "/home/george/.cabal/share/x86_64-linux-ghc-8.0.2/LinearProgramming-0.0.1.0"
+datadir    = "/home/george/.cabal/share/x86_64-linux-ghc-8.0.2/LinearProgramming-0.0.1.1"
 libexecdir = "/home/george/.cabal/libexec"
 sysconfdir = "/home/george/.cabal/etc"
 

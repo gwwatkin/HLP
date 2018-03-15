@@ -10,7 +10,7 @@ name:                LinearProgramming
 -- PVP summary:      +-+------- breaking API changes
 --                   | | +----- non-breaking API additions
 --                   | | | +--- code changes with no API change
-version:             0.0.1.0
+version:             0.0.1.1
 
 -- A short (one-line) description of the package.
 synopsis:            Library that interfaces and manipulates Linear Programs
@@ -48,7 +48,7 @@ cabal-version:       >=1.10
 
 library
   -- Modules exported by the library.
-  exposed-modules:     LinearProgram,Tableau,IntegerRatioTableau,LPUtil
+  exposed-modules:     LinearProgram,Tableau,IntegerRatioTableau,LPUtil,HLPInterpreter
   
   -- Modules included in this library but not exported.
   --other-modules:     

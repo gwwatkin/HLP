@@ -49,16 +49,17 @@ instance (HumanShow a) => HumanShow (Tableau a) where
                 
 instance ( Fractional a, Num a, Eq a, Ord a)=> LinearProgram (Tableau a) where
     interpret = classifyTableau
-    solve = solveTableauLP . classifyTableau
+    solve = solveTableauLP
     
+ 
     
 
-removeRow::(Eq a)=>(Tableau a)->Variable->(Tableau a)
-removeRow t@(T variables constraints names tab) v =
-    removeRowByIndex t ((fromJust $ findIndex (==v) names)-variables)
+removeRow::(Eq a)=>Variable->(Tableau a)->(Tableau a)
+removeRow v t@(T variables constraints names tab) =
+    removeRowByIndex ((fromJust $ findIndex (==v) names)-variables) t
  
-removeRowByIndex::(Eq a)=>(Tableau a)->Int->(Tableau a)
-removeRowByIndex (T variables constraints names tab) n = 
+removeRowByIndex::(Eq a)=>Int->(Tableau a)->(Tableau a)
+removeRowByIndex n (T variables constraints names tab) = 
     T   variables 
         (constraints-1) 
         (removeAtIndex (n+variables) names)
@@ -67,12 +68,12 @@ removeRowByIndex (T variables constraints names tab) n =
     
 
 
-removeColumn::(Eq a)=>(Tableau a)->Variable->(Tableau a)
-removeColumn t@(T variables constraints names tab) v =
-    removeColumnByIndex t (fromJust $ findIndex (==v) names)
+removeColumn::(Eq a)=>Variable->(Tableau a)->(Tableau a)
+removeColumn v t@(T variables constraints names tab) =
+    removeColumnByIndex (fromJust $ findIndex (==v) names) t
  
-removeColumnByIndex::(Eq a)=>(Tableau a)->Int->(Tableau a)
-removeColumnByIndex (T variables constraints names tab) n = 
+removeColumnByIndex::(Eq a)=>Int->(Tableau a)->(Tableau a)
+removeColumnByIndex n (T variables constraints names tab) = 
     T   (variables-1) 
         constraints 
         (removeAtIndex n names)
@@ -82,8 +83,8 @@ removeColumnByIndex (T variables constraints names tab) n =
                 
 -- tableu pivot the chosen variables
 -- Assumes variable names are unique and that you don't try funny pivots
-pivot::(Fractional a, Num a)=>Tableau a ->Variable->Variable->Tableau a
-pivot (T variables constraints names tab) freeVar depVar = 
+pivot::(Fractional a, Num a)=> Variable->Variable->Tableau a ->Tableau a
+pivot freeVar depVar (T variables constraints names tab) = 
         T   variables 
             constraints 
             (exchange freeVar depVar names)
@@ -185,6 +186,7 @@ phase2step = id
 
 
 
+
 --FIXME
 chooseAntiCyclingRow::[Variable]->[Int]->Int
 chooseAntiCyclingRow _ s = head s
@@ -199,9 +201,6 @@ solveTableauLP (IBS x) = solveTableauLP $ classifyTableau $ phase1step x
 solveTableauLP (FBS x) = solveTableauLP $ classifyTableau $ phase2step x
 -- other states of  tableu are terminal
 solveTableauLP x = x
-
-
-
 
 
 

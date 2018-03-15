@@ -17,7 +17,7 @@ import Data.List
 
 
 
-    
+{-    
 
 instance (HumanShow a)=> HumanShow (LP(Tableau a)) where
     humanShow (FBS x) = humanShow x ++"(Feasible Basic Solution)"
@@ -27,7 +27,7 @@ instance (HumanShow a)=> HumanShow (LP(Tableau a)) where
     humanShow (ILP x) = humanShow x ++"(Infeasible Linear Program)"
 
       
-      
+  -}    
       
       
       

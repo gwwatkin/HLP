@@ -15,6 +15,7 @@ instance HumanShow (Ratio Integer) where
     humanShow a = case denominator a of
                            1 -> show $ numerator a
                            _ -> (show.numerator) a ++ "/" ++ (show.denominator) a
+                           
 
 -- some number comparison utilities
     
